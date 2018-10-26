@@ -1,0 +1,26 @@
+<div class="container-fluid h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+      <h1 class="text-center">Post Job</h1>  
+      <div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</div>
+      <form>
+        <div class="form-group">
+          <label for="to">Product</label>
+          <div class="input-group">
+            <input class="form-control" name="product" [(ngModel)]="job.product">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="to">Description</label>
+          <div class="input-group">
+            <textarea class="form-control" name="shortDesc" [(ngModel)]="job.shortDesc"></textarea>
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-outline-dark" (click)="createJob()">Post</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

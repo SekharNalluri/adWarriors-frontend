@@ -1,0 +1,28 @@
+<div class="container-fluid h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-10 col-md-10 col-lg-8 col-xl-8">
+      <h1 class="text-center">Inbox</h1>
+      <table id="mytable" class="table table-bordered table-striped">
+        <thead class="table-secondary">
+          <tr>
+            <th>From</th>
+            <th>Message</th>
+            <th>Received On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- show no messages message if no messages available -->
+          <tr *ngIf="!messages.length">
+            <td colspan="3" class="text-center">No messages.</td>
+          </tr>
+
+          <tr *ngFor="let message of messages">
+            <td>{{message.from}}</td>
+            <td>{{message.text}}</td>
+            <td>{{message.sentAt}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

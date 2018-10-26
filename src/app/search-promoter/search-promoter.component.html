@@ -1,0 +1,81 @@
+<div class="container-fluid h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-8 col-md-8 col-lg-5 col-xl-5">
+      <h3 class="text-center">Search Promoters</h3>
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form-inline justify-content-center">
+        <div class="form-group">
+          <label for="text">Products &nbsp;</label>
+          <input type="text" formControlName="products" class="form-control" />
+        </div>
+        <div class="checkbox">&nbsp;</div><button type="submit" class="btn btn-default">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-10 col-md-10 col-lg-8 col-xl-8">
+      <div *ngIf="submitted">
+        <div *ngIf="promoters">
+          <h3 class="text-center">Promoters</h3>
+            <div class="table-responsive">
+
+              <table id="mytable" class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Name</th>
+                    <th>Jobs Owned</th>
+                    <th>Products</th>
+                    <th>Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngIf="!promoters.length">
+                    <td colspan="4" class="text-center">couldnt find any Advertisers for given products. Please try with different product.</td>
+                  </tr>
+
+                  <tr *ngFor="let promoter of promoters">
+                    <td>{{promoter.first_name + " " + promoter.last_name}}</td>
+                    <td>{{promoter.jobsOwned}}</td>
+                    <td>{{promoter.products}}</td>
+                    <td><button type="button" class="btn btn-link" (click)="open(content, promoter._id, promoter.first_name, promoter.last_name )" >Send Message</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Send Message</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="to">To</label>
+        <div class="input-group">
+          <input class="form-control" disabled name="currentuser" [(ngModel)]="currentUserName" >
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="to">Message</label>
+          <div class="input-group">
+            <textarea class="form-control" name="message" [(ngModel)]="message"></textarea>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="sendMessage()">Send</button>
+  </div>
+</ng-template>

@@ -1,0 +1,55 @@
+<div class="container-fluid h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-8 col-md-8 col-lg-5 col-xl-5">
+      <h1 class="text-center">Search Jobs</h1>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="text">Products &nbsp;</label>
+          <input type="text" name="products" [(ngModel)]="products" class="form-control" />
+        </div>
+        <div class="checkbox">&nbsp;</div><button type="submit" (click)="onSubmit()" class="btn btn-default">Search</button>
+      </form>
+    </div>
+  </div>
+<div class="row justify-content-center align-items-center h-100">
+  <div class="col col-sm-10 col-md-10 col-lg-8 col-xl-8">
+    <div *ngIf="submitted">
+      <div *ngIf="jobs">
+        <h1 class="text-center">Jobs</h1>
+
+
+        <table id="mytable" class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Description</th>
+              <th>Posted By</th>
+              <th>Products</th>
+              <th>status</th>
+              <th>Current Assignee</th>
+              <th>Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngIf="!jobs.length">
+              <td colspan="6" class="text-center">couldnt find any Jobs for given products. Please try with different
+                product.</td>
+            </tr>
+
+            <tr *ngFor="let job of jobs">
+              <td>{{job.shortDesc}}</td>
+              <td>{{job.advertiser}}</td>
+              <td>{{job.product}}</td>
+              <td>{{job.status}}</td>
+              <td>{{job.promoter}}</td>
+              <td>Send Message</td>
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
